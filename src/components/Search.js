@@ -17,7 +17,7 @@ const Search = () => {
             .map(id => parseInt(id, 10));
     } 
 
-    const fixSelections = () {
+    const fixSelections = () => {
         const selections = getSelections();
 
         $('select.select2').each((i, sel) => {
@@ -53,12 +53,6 @@ const Search = () => {
                 <select class="s form-control select2" id="name1_${rowId}_first" name="name[]">
                 ${populateOptions()}
                 </select>
-            </td>
-            <td>
-                <input type="number" name="winlose[]" id="amt1_${rowId}" class="form-control">
-            </td>
-            <td style="text-align:center">
-                <a href="#" class="btn btn-danger remove">-</a>
             </td>
         </tr>
         `;
