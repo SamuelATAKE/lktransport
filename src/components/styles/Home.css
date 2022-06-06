@@ -1,0 +1,35 @@
+.bg1 {
+    background-image:url('../../../public/assets/images/intro_1.jpg');
+}
+
+.bg2 {
+    background-image:url('../../../public/assets/images/intro_2.jpg');
+}
+
+.bg3 {
+    background-image:url('../../../public/assets/images/intro_3.jpg');
+}
+
+.bg-cta {
+    background-image:url('../../../public/assets/images/cta.jpg');
+}
+
+.bg-offer1 {
+    background-image:url('../../../public/assets/images/offer_1.jpg');    
+}
+
+.bg-offer2 {
+    background-image:url('../../../public/assets/images/offer_2.jpg');    
+}
+
+.bg-offer3 {
+    background-image:url('../../../public/assets/images/offer_3.jpg');    
+}
+
+.bg-offer4 {
+    background-image:url('../../../public/assets/images/offer_4.jpg');    
+}
+
+.bg-contact {
+    background-image:url('../../../public/assets/images/contact.png');    
+}
