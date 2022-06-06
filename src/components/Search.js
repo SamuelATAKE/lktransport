@@ -11,83 +11,83 @@ const Search = () => {
         {id: 7, name: "Cinkassé", value: "Cinkassé"},
     ];
 
-    const getSelections = () => {
-        return $('select.select2')
-            .map((i, sel) => $(sel).val()).toArray()
-            .map(id => parseInt(id, 10));
-    } 
+    // const getSelections = () => {
+    //     return $('select.select2')
+    //         .map((i, sel) => $(sel).val()).toArray()
+    //         .map(id => parseInt(id, 10));
+    // } 
 
-    const fixSelections = () => {
-        const selections = getSelections();
+    // const fixSelections = () => {
+    //     const selections = getSelections();
 
-        $('select.select2').each((i, sel) => {
-            let $sel = $(sel), val = $sel.val();
-            $sel.find('option').each((j, opt) => {
-            let $opt = $(opt);
-            if ($opt.val() !== val && selections.includes(parseInt($opt.val(), 10))) {
-                $opt.attr('disabled', true);
-            } else {
-                $opt.removeAttr('disabled');
-            }
-            });
-        });
-    }
+    //     $('select.select2').each((i, sel) => {
+    //         let $sel = $(sel), val = $sel.val();
+    //         $sel.find('option').each((j, opt) => {
+    //         let $opt = $(opt);
+    //         if ($opt.val() !== val && selections.includes(parseInt($opt.val(), 10))) {
+    //             $opt.attr('disabled', true);
+    //         } else {
+    //             $opt.removeAttr('disabled');
+    //         }
+    //         });
+    //     });
+    // }
 
-    const populateOptions = () => {
-        const selections = getSelections();
+    // const populateOptions = () => {
+    //     const selections = getSelections();
 
-        return options.map(option => {
-            return `
-            <option value="${option.id}"
-                ${selections.includes(option.id) ? 'disabled="disabled"' : ''}>
-                ${option.name}
-            </option>
-            `;
-        });
-    }
+    //     return options.map(option => {
+    //         return `
+    //         <option value="${option.id}"
+    //             ${selections.includes(option.id) ? 'disabled="disabled"' : ''}>
+    //             ${option.name}
+    //         </option>
+    //         `;
+    //     });
+    // }
 
-    const addRow = () => {
-        const tr = `
-        <tr class="cb" id="row_${rowId}">
-            <td>
-                <select class="s form-control select2" id="name1_${rowId}_first" name="name[]">
-                ${populateOptions()}
-                </select>
-            </td>
-        </tr>
-        `;
-        rowId++;
-        $('tbody').append(tr);
-    }
+    // const addRow = () => {
+    //     const tr = `
+    //     <tr class="cb" id="row_${rowId}">
+    //         <td>
+    //             <select class="s form-control select2" id="name1_${rowId}_first" name="name[]">
+    //             ${populateOptions()}
+    //             </select>
+    //         </td>
+    //     </tr>
+    //     `;
+    //     rowId++;
+    //     $('tbody').append(tr);
+    // }
 
-    $('.addRow').on('click', function() {
-        addRow();
-        $('.s').change(function() {
-          let value = $(this).val();
-          $(this).siblings('.s')
-            .children('option')
-            .attr('disabled', false);
-          $('.s').each(function() {
-            $(this).siblings('.s')
-              .children('option[value=' + $(this).val() + ']')
-              .attr('disabled', 'disabled');
-          })
-        });
-        fixSelections();
-    });
+    // $('.addRow').on('click', function() {
+    //     addRow();
+    //     $('.s').change(function() {
+    //       let value = $(this).val();
+    //       $(this).siblings('.s')
+    //         .children('option')
+    //         .attr('disabled', false);
+    //       $('.s').each(function() {
+    //         $(this).siblings('.s')
+    //           .children('option[value=' + $(this).val() + ']')
+    //           .attr('disabled', 'disabled');
+    //       })
+    //     });
+    //     fixSelections();
+    // });
       
-    $('tbody').on('click', '.remove', function() {
-    $(this).parent().parent().remove();
-    fixSelections();
-    });
+    // $('tbody').on('click', '.remove', function() {
+    // $(this).parent().parent().remove();
+    // fixSelections();
+    // });
       
-    $('.savebtn').on('click', function() {
-    $('.listable .cb').each(function(index, item) {
-        console.log($('#amt1_' + index).val());
-    });
-    });
+    // $('.savebtn').on('click', function() {
+    // $('.listable .cb').each(function(index, item) {
+    //     console.log($('#amt1_' + index).val());
+    // });
+    // });
       
-    $(document).on('change', 'select.select2', e => fixSelections());
+    // $(document).on('change', 'select.select2', e => fixSelections());
 
     return (
         <div class="container fill_height">
