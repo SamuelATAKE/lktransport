@@ -323,6 +323,25 @@ section
 	/* background: rgba(54, 19, 84, 0.85); */
 }
 
+.text-blacked 
+{
+	color:#000000;
+	font-size: 13px;
+	font-weight: 700;
+}
+
+.text-white 
+{
+	color:#FFFFFF!important;
+	font-size: 25px;
+	font-weight: 700;
+}
+
+.text-center 
+{
+	text-align: center;
+}
+
 /*********************************
 3.1 Top Bar
 *********************************/

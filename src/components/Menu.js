@@ -7,11 +7,11 @@ const Menu = () => {
                 <div class="menu_close_container"><div class="menu_close"></div></div>
                 <div class="logo menu_logo"><a href="/#"><img src="../../public/logo.png" alt="" /></a></div>
                 <ul>
-                    <li class="menu-item"><a href="/#">Accueil</a></li>
-                    <li class="menu-item"><a href="about.html">A propos de nous</a></li>
-                    <li class="menu-item"><a href="offers.html">Tarifs</a></li>
-                    <li class="menu-item"><a href="blog.html">Actualité</a></li>
-                    <li class="menu-item"><a href="contact.html">Contact</a></li>
+                    <li class="menu-item text-white"><a class="text-white" href="/#">Accueil</a></li>
+                    <li class="menu-item text-white"><a class="text-white" href="/#">A propos de nous</a></li>
+                    <li class="menu-item text-white"><a class="text-white" href="/#">Tarifs</a></li>
+                    <li class="menu-item text-white"><a class="text-white" href="/#">Actualité</a></li>
+                    <li class="menu-item text-white"><a class="text-white" href="/#">Contact</a></li>
                 </ul>
             </div>
         </div>
