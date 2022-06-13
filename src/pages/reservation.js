@@ -18,6 +18,24 @@ const commandeState = {
   dateVoyage: "",
   station: "",
   tarif: "",
+  payement: "",
+  nombre: "",
+};
+
+const paymentState = {
+  auth_token: "",
+  phone_number: "",
+  amount: "",
+  description: "",
+  identifier: "",
+  network: "",
+};
+
+const payementState = {
+  reference: "",
+  status: "",
+  datepayement: "",
+  etat: "",
 };
 
 const Reservation = (props) => {
@@ -27,6 +45,8 @@ const Reservation = (props) => {
   const [_tarif, setTarif_] = React.useState([]);
   const [stations, setStations] = React.useState([]);
   const [commande, setCommande] = React.useState(commandeState);
+  const [payment, setPayment] = React.useState(paymentState);
+  const [payement, setPayement] = React.useState(payementState);
   //   const {nom,  dateVoyage, tarif, station} = commande;
   const { nom, email, telephone, dateVoyage, station } = state;
 
@@ -50,7 +70,7 @@ const Reservation = (props) => {
         setStations(res.data);
       });
   }, []);
-  
+
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(stations);
@@ -60,6 +80,7 @@ const Reservation = (props) => {
     commande.nom = state.nom;
     commande.dateVoyage = state.dateVoyage;
     commande.station = state.station;
+    commande.nombre = reservation.number;
     console.log(commande);
 
     axios
@@ -77,6 +98,79 @@ const Reservation = (props) => {
         sessionStorage.setItem("commande", JSON.stringify(res.data));
         // console.log("navigate");
         // history.push({ pathname: "/qrcode", state: { reservation: rstate } });
+        payment.auth_token = "356c06b2-6f4b-4376-b4b5-af495b581725";
+        payment.phone_number = state.telephone;
+        payment.amount = commande.tarif.prix;
+        payment.description = "Réservation de ticket de bus";
+        const d = new Date();
+        console.log(d);
+        console.log(d.toLocaleDateString);
+        const s = d.toString();
+        payment.identifier = `${res.data.id}${d.getFullYear()}${d.getMonth()}${d.getDay()}`;
+        if (
+          state.telephone.slice(0, 2) === "90" ||
+          state.telephone.slice(0, 2) === "91" ||
+          state.telephone.slice(0, 2) === "92" ||
+          state.telephone.slice(0, 2) === "93" ||
+          state.telephone.slice(0, 2) === "70"
+        ) {
+          payment.network = "TMONEY";
+        } else {
+          payment.network = "FLOOZ";
+        }
+
+        console.log("Le payement");
+        console.log(payment);
+        axios
+          .post(
+            `https://paygateglobal.com/api/v1/pay`,
+            JSON.stringify(payment),
+            {
+              headers: {
+                "content-type": "application/json",
+              },
+            }
+          )
+          .then((res) => {
+            console.log(res.data);
+            sessionStorage.setItem("tx_reference", res.data.tx_reference);
+            sessionStorage.setItem("status", res.data.status);
+
+            payement.status = res.data.status;
+            payement.reference = res.data.tx_reference;
+            payement.datepayement = Date.now();
+
+            axios
+              .post(
+                `https://lktransportbackend.herokuapp.com/payement`,
+                JSON.stringify(payement),
+                {
+                  headers: {
+                    "content-type": "application/json",
+                  },
+                }
+              )
+              .then((res) => {
+                console.log(res.data);
+                commande.payement = res.data;
+
+                axios
+                  .put(
+                    `https://lktransportbackend.herokuapp.com/commande`,
+                    JSON.stringify(commande),
+                    {
+                      headers: {
+                        "content-type": "application/json",
+                      },
+                    }
+                  )
+                  .then((res) => {
+                    console.log(res.data);
+                    console.log("Modified Data");
+                  });
+              });
+          });
+
         navigate("/qrcode");
       });
   };

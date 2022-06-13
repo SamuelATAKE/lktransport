@@ -1,17 +1,17 @@
 .bg1 {
-    background-image:url('../../../public/assets/images/intro_1.jpg');
+    background-image:url('../../../public/assets/images/bus2.jpg');
 }
 
 .bg2 {
-    background-image:url('../../../public/assets/images/intro_2.jpg');
+    background-image:url('../../../public/assets/images/bus2.jpg');
 }
 
 .bg3 {
-    background-image:url('../../../public/assets/images/intro_3.jpg');
+    background-image:url('../../../public/assets/images/bus2.jpg');
 }
 
 .bg-cta {
-    background-image:url('../../../public/assets/images/cta.jpg');
+    background-image:url('../../../public/assets/images/bus1.jpg');
 }
 
 .bg-offer1 {
@@ -31,5 +31,5 @@
 }
 
 .bg-contact {
-    background-image:url('../../../public/assets/images/contact.png');    
+    background-image:url('../../../public/assets/images/bus3.jpg');    
 }
