@@ -1,0 +1,7 @@
+{
+  "name": "lktransport",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

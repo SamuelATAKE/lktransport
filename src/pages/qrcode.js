@@ -17,6 +17,8 @@ const QrCode = () => {
     value:
       "https://lktransportbackend.herokuapp.com/reservation/" + commande.id,
   };
+  
+  // window.location.reload(false);
 
   return (
     <div class="super_container">

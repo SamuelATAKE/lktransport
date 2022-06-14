@@ -5,7 +5,8 @@ import "./App.css";
 import Home from "./pages/home";
 import QrCode from "./pages/qrcode";
 import Reservation from "./pages/reservation";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import ExternalNavigation from "./components/ExternalNavigation";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/reservation" element={<Reservation />} />
         <Route path="/qrcode" element={<QrCode />} />
+        <Route path="/paygate" element={<ExternalNavigation />} />
       </Routes>
     </Router>
   );

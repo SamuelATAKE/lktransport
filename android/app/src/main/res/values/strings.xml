@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">lk-transport</string>
+    <string name="title_activity_main">lk-transport</string>
+    <string name="package_name">jdk.shtam.lktransport</string>
+    <string name="custom_url_scheme">jdk.shtam.lktransport</string>
+</resources>
