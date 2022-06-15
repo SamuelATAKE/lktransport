@@ -214,7 +214,7 @@ const Reservation = (props) => {
         //   });
         // alert("Done");
         window.location.replace(
-          `https://paygateglobal.com/v1/page?token=${payment.auth_token}&amount=${payment.amount}&identifier=${payment.identifier}&description=${payment.description}&phone=${payment.phone_number}&network=${payment.network}&url=http://localhost:3000/qrcode`
+          `https://paygateglobal.com/v1/page?token=${payment.auth_token}&amount=${payment.amount}&identifier=${payment.identifier}&description=${payment.description}&phone=${payment.phone_number}&network=${payment.network}&url=https://lktransport.vercel.app/qrcode`
         );
 
         // const resp = fetch(`https://paygateglobal.com/api/v1/pay`, {
