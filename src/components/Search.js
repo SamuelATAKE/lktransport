@@ -45,7 +45,7 @@ const Search = () => {
 
   React.useEffect(() => {
     axios.get(`https://lktransportbackend.herokuapp.com/tarif`).then((res) => {
-      setTarifs(res.data );
+      setTarifs(res.data);
     });
   }, []);
 
@@ -60,29 +60,40 @@ const Search = () => {
     e.preventDefault();
     console.log("L état");
     console.log(state);
-    console.log("Les tarifs")
+    console.log("Les tarifs");
     console.log(tarifs);
-    if(state.depart === state.destination) {
-        console.log('erreur');
-        toast("Votre lieu de départ et de destination sont les mêmes");
-    }else {
-        tarifs.forEach((tarif) => {
-            if(tarif.depart === state.depart && tarif.destination === state.destination) {
-                reservation.price = tarif.prix;
-                sessionStorage.setItem('tarif', JSON.stringify(tarif));
-            }
-        });
+    if (state.depart === state.destination) {
+      console.log("erreur");
+      toast("Votre lieu de départ et de destination sont les mêmes");
+    } else if (state.depart === "") {
+      console.log("erreur");
+      toast("Veuillez sélectionner un lieu de départ");
+    } else if (state.destination === "") {
+      console.log("erreur");
+      toast("Veuillez sélectionner un lieu de destination");
+    } else if (state.places === "00" || state.places === "") {
+      console.log("erreur");
+      toast("Veuillez sélectionner le nombre de places à réserver");
+    } else {
+      tarifs.forEach((tarif) => {
+        if (
+          tarif.depart === state.depart &&
+          tarif.destination === state.destination
+        ) {
+          reservation.price = tarif.prix;
+          sessionStorage.setItem("tarif", JSON.stringify(tarif));
+        }
+      });
 
-        reservation.departure = state.depart;
-        reservation.arrival = state.destination;
-        reservation.number = state.places;
+      reservation.departure = state.depart;
+      reservation.arrival = state.destination;
+      reservation.number = state.places;
 
-        console.log("La réservation");
-        console.log(reservation);
-        sessionStorage.setItem('reservation', JSON.stringify(reservation));
-        navigate("/reservation", {state: reservation});
+      console.log("La réservation");
+      console.log(reservation);
+      sessionStorage.setItem("reservation", JSON.stringify(reservation));
+      navigate("/reservation", { state: reservation });
     }
-    
   };
 
   const onFocus = (focused, isDisable) => {

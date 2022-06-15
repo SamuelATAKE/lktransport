@@ -7,9 +7,11 @@ import ReactToPdf from "react-to-pdf";
 const QrCode = () => {
   const [reservation, setReservation] = React.useState([]);
   const [commande, setCommande] = React.useState([]);
+  const [reload, setReload] = React.useState(false);
   const ref = React.createRef();
 
   React.useEffect(() => {
+    // window.location.reload(false);
     setReservation(JSON.parse(sessionStorage.getItem("reservation")));
     setCommande(JSON.parse(sessionStorage.getItem("commande")));
   }, []);
