@@ -110,6 +110,7 @@ const Reservation = (props) => {
     commande.nom = state.nom;
     commande.dateVoyage = state.dateVoyage;
     commande.station = state.station;
+    commande.telephone = state.telephone;
     commande.nombre = reservation.number;
     console.log(commande);
 
@@ -148,7 +149,7 @@ const Reservation = (props) => {
         payment.phone_number = state.telephone;
         getPayment.phone = state.telephone;
         // payment.amount = commande.tarif.prix;
-        payment.amount = 2;
+        payment.amount = 1;
         getPayment.amount = 2;
 
         payment.description = "Réservation de ticket de bus";
@@ -160,11 +161,15 @@ const Reservation = (props) => {
         const s = d.toString();
         payment.identifier = `${
           res.data.id
-        }${d.getFullYear()}${d.getMonth()}${d.getDay()}`;
+        }${d.getFullYear()}${d.getMonth()}${d.getDay()}${Math.floor(
+          Math.random() * 100
+        )}`;
 
         getPayment.identifier = `${
           res.data.id
-        }${d.getFullYear()}${d.getMonth()}${d.getDay()}`;
+        }${d.getFullYear()}${d.getMonth()}${d.getDay()}${Math.floor(
+          Math.random() * 100
+        )}`;
         if (
           state.telephone.slice(0, 2) === "90" ||
           state.telephone.slice(0, 2) === "91" ||
@@ -179,182 +184,59 @@ const Reservation = (props) => {
           getPayment.network = "FLOOZ";
         }
 
-        console.log("Le payement");
-        console.log(JSON.stringify(payment));
-        console.log(JSON.stringify(getPayment));
+        axios
+          .post(
+            `https://lktransportbackend.herokuapp.com/payement/payment`,
+            JSON.stringify(payment),
+            {
+              headers: {
+                "content-type": "application/json",
+              },
+            }
+          )
+          .then((resp) => {
+            console.log(resp.data);
+            sessionStorage.setItem("tx_reference", resp.data.tx_reference);
+            sessionStorage.setItem("status", resp.data.status);
+            console.log("Cool");
+            payement.status = resp.data.status;
+            console.log("Cool1");
+            payement.reference = resp.data.tx_reference;
+            console.log("Cool2");
+            let n = new Date().toLocaleDateString("fr");
+            let ar = n.split("/").map(Number);
+            let temp = ar[0];
+            ar[0] = ar[2];
+            ar[2] = temp;
+            payement.datepayement = ar;
+            console.log("Cool3");
+            payement.etat = true;
+            payement.reservation = res.data;
+            console.log("Saving payement");
+            console.log(payement);
 
-        payement.etat = true;
-        payement.reservation = res.data;
-        payement.datepayement = Date.now().toString();
-        console.log("Saving payement");
-        console.log(payement);
-        console.log(JSON.stringify(payement));
-
-        // axios
-        //   .post(
-        //     `https://lktransportbackend.herokuapp.com/payement`,
-        //     JSON.stringify(payement),
-        //     {
-        //       headers: {
-        //         "content-type": "application/json",
-        //       },
-        //     }
-        //   )
-        //   .then((response) => {
-        //     console.log(response.data);
-        //     sessionStorage.setItem("payment", JSON.stringify(payment));
-        //     console.log(sessionStorage.getItem("payment"));
-        //     sessionStorage.setItem("payement", JSON.stringify(response.data));
-        //     console.log(sessionStorage.getItem("payement"));
-        //     alert("Done");
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //     alert("Error");
-        //   });
-        // alert("Done");
-        window.location.replace(
-          `https://paygateglobal.com/v1/page?token=${payment.auth_token}&amount=${payment.amount}&identifier=${payment.identifier}&description=${payment.description}&phone=${payment.phone_number}&network=${payment.network}&url=https://lktransport.vercel.app/qrcode`
-        );
-
-        // const resp = fetch(`https://paygateglobal.com/api/v1/pay`, {
-        //   method: "POST",
-        //   headers: { "Content-Type": "application/json" },
-        //   body: JSON.stringify(payment),
-        // });
-
-        // let resp = makePayment(payment);
-
-        // if (makePayment(payment)) {
-        //   console.log(resp.data);
-        //   sessionStorage.setItem("tx_reference", resp.data.tx_reference);
-        //   sessionStorage.setItem("status", resp.data.status);
-
-        //   payement.status = resp.data.status;
-        //   payement.reference = resp.data.tx_reference;
-        //   payement.datepayement = Date.now().toString();
-        //   payement.etat = true;
-        //   payement.reservation = res.data;
-        //   console.log("Saving payement");
-        //   console.log(payement);
-        //   axios
-        //     .post(
-        //       `https://lktransportbackend.herokuapp.com/payement`,
-        //       JSON.stringify(payement),
-        //       {
-        //         headers: {
-        //           "content-type": "application/json",
-        //         },
-        //       }
-        //     )
-        //     .then((response) => {
-        //       console.log(response.data);
-        //     })
-        //     .catch((err) => {
-        //       console.log(err);
-        //     });
-        // }
-
-        // axios
-        //   .get(
-        //     `https://paygateglobal.com/v1/page?token=${payment.auth_token}&amount=${payment.amount}&identifier=${payment.identifier}&description=${payment.description}&phone=${payment.phone_number}&network=${payment.network}`
-        //     // JSON.stringify(getPayment),
-        //     // { withCredentials: false },
-        //     // {
-        //     //   headers: {
-        //     //     "Content-Type": "application/json",
-        //     //     "Access-Control-Allow-Origin": "*",
-        //     //     "Access-Control-Allow-Headers":
-        //     //       "Origin, X-Requested-With, Content-Type, Accept",
-        //     //     "Access-Control-Allow-Methods":
-        //     //       "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        //     //   },
-        //     // }
-        //   )
-        //   .then((resp) => {
-        //     console.log(resp.data);
-        //     sessionStorage.setItem("tx_reference", resp.data.tx_reference);
-        //     sessionStorage.setItem("status", resp.data.status);
-
-        //     payement.status = resp.data.status;
-        //     payement.reference = resp.data.tx_reference;
-        //     payement.datepayement = Date.now().toString();
-        //     payement.etat = true;
-        //     payement.reservation = res.data;
-        //     console.log("Saving payement");
-        //     console.log(payement);
-        //     axios
-        //       .post(
-        //         `https://lktransportbackend.herokuapp.com/payement`,
-        //         JSON.stringify(payement),
-        //         {
-        //           headers: {
-        //             "content-type": "application/json",
-        //           },
-        //         }
-        //       )
-        //       .then((response) => {
-        //         console.log(response.data);
-        //       })
-        //       .catch((err) => {
-        //         console.log(err);
-        //       });
-        //   })
-        //   .catch((error) => {
-        //     console.log("L'erreur GP: ");
-        //     console.log(error);
-        //   });
-
-        // axios
-        //   .post(
-        //     `https://paygateglobal.com/api/v1/pay`,
-        //     JSON.stringify(payment),
-        //     { withCredentials: false },
-        //     {
-        //       headers: {
-        //         "Content-Type": "application/json",
-        //         "Access-Control-Allow-Origin": "*",
-        //         "Access-Control-Allow-Headers":
-        //           "Origin, X-Requested-With, Content-Type, Accept",
-        //         "Access-Control-Allow-Methods":
-        //           "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        //       },
-        //     }
-        //   )
-        //   .then((resp) => {
-        //     console.log(resp.data);
-        //     sessionStorage.setItem("tx_reference", resp.data.tx_reference);
-        //     sessionStorage.setItem("status", resp.data.status);
-
-        //     payement.status = resp.data.status;
-        //     payement.reference = resp.data.tx_reference;
-        //     payement.datepayement = Date.now().toString();
-        //     payement.etat = true;
-        //     payement.reservation = res.data;
-        //     console.log("Saving payement");
-        //     console.log(payement);
-
-        //     axios
-        //       .post(
-        //         `https://lktransportbackend.herokuapp.com/payement`,
-        //         JSON.stringify(payement),
-        //         {
-        //           headers: {
-        //             "content-type": "application/json",
-        //           },
-        //         }
-        //       )
-        //       .then((response) => {
-        //         console.log(response.data);
-        //       })
-        //       .catch((err) => {
-        //         console.log(err);
-        //       });
-        //   })
-        //   .catch((error) => {
-        //     console.log("L'erreur GP: ");
-        //     console.log(error);
-        //   });
+            axios
+              .post(
+                `https://lktransportbackend.herokuapp.com/payement`,
+                JSON.stringify(payement),
+                {
+                  headers: {
+                    "content-type": "application/json",
+                  },
+                }
+              )
+              .then((response) => {
+                console.log(response.data);
+                navigate("/qrcode");
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          })
+          .catch((error) => {
+            console.log("L'erreur GP: ");
+            console.log(error);
+          });
 
         // navigate(
         //   `https://paygateglobal.com/v1/page?token=${payment.auth_token}&amount=0&description=ReservationDeBus&identifier=${payment.identifier}&url=https://lktransport.vercel.app/qrcode`
