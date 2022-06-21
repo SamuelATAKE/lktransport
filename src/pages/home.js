@@ -36,7 +36,7 @@ const Home = () => {
 
             {/* <!-- Intro --> */}
 
-            <div class="intro">
+            <div class="intro" id="tarif">
                 <div class="container">
                     <div class="row">
                         <div class="col">
@@ -409,7 +409,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div class="contact">
+            <div class="contact" id="contact">
                 <div class="contact_background bg-contact"></div>
 
                 <div class="container">

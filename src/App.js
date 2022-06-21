@@ -7,6 +7,7 @@ import QrCode from "./pages/qrcode";
 import Reservation from "./pages/reservation";
 import "react-toastify/dist/ReactToastify.css";
 import PayementConfirm from "./pages/payementConfirm";
+import About from "./pages/about";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/reservation" element={<Reservation />} />
+        <Route path="/a-propos-de-nous" element={<About />} />
         <Route path="/qrcode" element={<QrCode />} />
         <Route path="/paiement" element={<PayementConfirm />} />
       </Routes>
