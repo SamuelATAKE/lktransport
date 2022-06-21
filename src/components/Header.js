@@ -43,10 +43,10 @@ const Header = () => {
                             <div class="main_nav_container ml-auto">
                                 <ul class="main_nav_list">
                                     <li class="main_nav_item"><a href="/#">Accueil</a></li>
-                                    <li class="main_nav_item"><a href="/#">A propos de nous</a></li>
-                                    <li class="main_nav_item"><a href="/#">Tarifs</a></li>
+                                    <li class="main_nav_item"><a href="/a-propos-de-nous">A propos de nous</a></li>
+                                    <li class="main_nav_item"><a href="#tarif">Tarifs</a></li>
                                     <li class="main_nav_item"><a href="/#">Actualité</a></li>
-                                    <li class="main_nav_item"><a href="/#">Contact</a></li>
+                                    <li class="main_nav_item"><a href="#contact">Contact</a></li>
                                 </ul>
                             </div>
                             <div class="content_search ml-lg-0 ml-auto">

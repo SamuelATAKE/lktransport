@@ -9,9 +9,9 @@ const Menu = () => {
                 <ul>
                     <li class="menu-item text-white"><a class="text-white" href="/">Accueil</a></li>
                     <li class="menu-item text-white"><a class="text-white" href="/a-propos-de-nous">A propos de nous</a></li>
-                    <li class="menu-item text-white"><a class="text-white" href="/#tarif">Tarifs</a></li>
+                    <li class="menu-item text-white"><a class="text-white" href="#tarif">Tarifs</a></li>
                     <li class="menu-item text-white"><a class="text-white" href="/#">Actualité</a></li>
-                    <li class="menu-item text-white"><a class="text-white" href="/#contact">Contact</a></li>
+                    <li class="menu-item text-white"><a class="text-white" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
