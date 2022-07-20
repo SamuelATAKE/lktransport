@@ -1189,8 +1189,8 @@ section
 .intro
 {
 	width: 100%;
-	padding-top: 100px;
-	padding-bottom: 105px;
+	padding-top: 70px;
+	padding-bottom: 75px;
 }
 .intro_title
 {
@@ -1225,7 +1225,7 @@ section
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	height: 68vh;
 	z-index: 2;
 	background: rgba(2, 236, 92, 0.4);
 	/* background: rgba(49, 18, 75, 0.55); */
@@ -1291,6 +1291,7 @@ section
 	font-weight: 700;
 	color: #FFFFFF;
 	letter-spacing: -0.05em;
+	margin-top: 2em;
 }
 .intro_price
 {
@@ -1327,6 +1328,27 @@ section
 .rating_5 i:nth-child(3){color: #fbb53d;}
 .rating_5 i:nth-child(4){color: #fa9e1b;}
 .rating_5 i:nth-child(5){color: #ef910a;}
+
+.row1 {
+	width: 35%;
+	height: 41%;
+}
+
+.row1 h1 {
+	font-size: 39px;
+	font-weight: 300;
+	color: #FFFFFF;
+}
+
+.row2 {
+	margin-bottom: 0%;
+}
+
+.row2 h2 {
+	font-size: 59px;
+	font-weight: 700;
+	color: #FFFFFF;
+}
 
 /*********************************
 8. CTA

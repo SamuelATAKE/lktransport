@@ -17,6 +17,9 @@
     <link rel="stylesheet" type="text/css" href="assets/styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="assets/styles/responsive.css">
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="stylesheet" type="text/css" href="assets/styles/app.css"> 
+    <script src="assets/js/app.js" defer></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -48,12 +51,30 @@
     -->
 
 
-      <script src="assets/js/jquery-3.2.1.min.js"></script>
+      <!--<script src="assets/js/jquery-3.2.1.min.js"></script>
       <script src="assets/styles/bootstrap4/popper.js"></script>
       <script src="assets/styles/bootstrap4/bootstrap.min.js"></script>
       <script src="assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
       <script src="assets/plugins/easing/easing.js"></script>
-      <script src="assets/js/custom.js"></script>
+      <script src="assets/js/custom.js"></script>-->
+
+      <script>
+        window.addEventListener('load', function () {
+            flatpickr('#date', {
+                allowInput: true,
+                altInput: true,
+                monthSelectorType: 'static',
+                altFormat: 'd M Y',
+                altInputClass: 'form-control datepicker',
+                dateFormat: 'Y-m-d',
+                minDate: 'today',
+                position: 'auto left',
+                locale: {
+                    firstDayOfWeek: 1
+                },
+            });
+        })
+    </script>
 
     
   </body>

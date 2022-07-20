@@ -1,3 +1,7 @@
 .bg-logo {
     background-image:url('../../../public/logo.png');
 }
+
+.logo-header {
+    width: 50%;
+}

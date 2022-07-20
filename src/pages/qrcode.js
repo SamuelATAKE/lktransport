@@ -44,10 +44,10 @@ const QrCode = () => {
               <div class="intro_text text-center">
                 <p class="cta_text">Départ: {reservation.departure}</p>
                 <p class="cta_text">Destination: {reservation.arrival}</p>
-                <p class="cta_text">Nombre de places: {reservation.number}</p>
+                <p class="cta_text">Nombre de places: {commande.nombre}</p>
                 <p class="cta_text">Prix unitaire: {reservation.price}</p>
                 <p class="cta_text">
-                  Prix total: {reservation.price * reservation.number}
+                  Prix total: {reservation.price * commande.nombre}
                 </p>
                 <p class="cta_text">Nom: {commande.nom}</p>
                 <p class="cta_text">Date de voyage: {commande.dateVoyage}</p>

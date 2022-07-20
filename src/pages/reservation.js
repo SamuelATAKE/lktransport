@@ -74,7 +74,8 @@ const Reservation = (props) => {
   const [payement, setPayement] = React.useState(payementState);
   const [getPayment, setGetPayement] = React.useState(getPaymentState);
   //   const {nom,  dateVoyage, tarif, station} = commande;
-  const { nom, email, telephone, dateVoyage, station } = state;
+  const { nom, email, telephone, places, station } = state;
+  const [dateVoyage, setDateVoyage] = React.useState([]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -89,6 +90,8 @@ const Reservation = (props) => {
     console.log(JSON.parse(sessionStorage.getItem("reservation")));
     setReservation(JSON.parse(sessionStorage.getItem("reservation")));
     setTarif_(JSON.parse(sessionStorage.getItem("tarif")));
+    setDateVoyage(JSON.parse(sessionStorage.getItem("dateVoyage")));
+    console.log(dateVoyage);
 
     axios
       .get(`https://lktransportbackend.herokuapp.com/station`)
@@ -104,14 +107,17 @@ const Reservation = (props) => {
     if (state.station === "") {
       console.log("erreur");
       toast("Veuillez sélectionner votre station de départ");
+    } else if (state.dateVoyage === "") {
+      console.log("erreur");
+      toast("Veuillez sélectionner votre date de voyage");
     }
     state.station = JSON.parse(state.station);
     console.log(state);
     commande.nom = state.nom;
-    commande.dateVoyage = state.dateVoyage;
+    commande.dateVoyage = reservation.dateVoyage;
     commande.station = state.station;
     commande.telephone = state.telephone;
-    commande.nombre = reservation.number;
+    commande.nombre = state.places;
     console.log(commande);
 
     if (state.dateVoyage === []) {
@@ -184,6 +190,7 @@ const Reservation = (props) => {
           getPayment.network = "FLOOZ";
         }
 
+        // Payement par Paygate
         axios
           .post(
             `https://lktransportbackend.herokuapp.com/payement/payment`,
@@ -273,11 +280,8 @@ const Reservation = (props) => {
               <div class="intro_text text-center">
                 <p class="cta_text">Départ: {reservation.departure}</p>
                 <p class="cta_text">Destination: {reservation.arrival}</p>
-                <p class="cta_text">Nombre de places: {reservation.number}</p>
                 <p class="cta_text">Prix unitaire: {reservation.price}</p>
-                <p class="cta_text">
-                  Prix total: {reservation.price * reservation.number}
-                </p>
+                <p class="cta_text">Date de voyage: {reservation.dateVoyage}</p>
               </div>
               <div class="contact_form_container">
                 <div class="contact_title text-center">
@@ -309,47 +313,70 @@ const Reservation = (props) => {
                     onChange={handleInputChange}
                     placeholder="Votre adresse mail"
                   />
-                  <input
-                    name="telephone"
-                    type="tel"
-                    id="contact_form_email"
-                    class="contact_form_name input_field"
-                    placeholder="Votre numéro de téléphone"
-                    required="required"
-                    value={telephone || ""}
-                    onChange={handleInputChange}
-                    data-error="Votre numéro de téléphone est réquis."
-                  />
-                  <input
-                    name="dateVoyage"
-                    type="date"
-                    id="contact_form_date"
-                    class="contact_form_name input_field"
-                    required="required"
-                    value={dateVoyage}
-                    onChange={handleInputChange}
-                    data-error="Votre date de voyage est requise."
-                  />
-                  <select
-                    name="station"
-                    aria-labelledby="aria-label"
-                    value={station || ""}
-                    onChange={handleInputChange}
-                    className="dropdown_item_select search_input"
-                  >
-                    <option className="text-blacked">
-                      Sélectionner votre station de départ
-                    </option>
-                    {stations.map((station) => (
-                      <option
-                        className="text-blacked"
-                        key={station.id}
-                        value={JSON.stringify(station)}
-                      >
-                        {station.siege} {station.ville}
+                  <div class="form-group position-relative">
+                    <input
+                      name="telephone"
+                      type="tel"
+                      id="contact_form_email"
+                      class="contact_form_name input_field"
+                      placeholder="Votre numéro de téléphone"
+                      required="required"
+                      value={telephone || ""}
+                      onChange={handleInputChange}
+                      data-error="Votre numéro de téléphone est réquis."
+                    />
+                  </div>
+
+                  <div class="form-group position-relative">
+                    <select
+                      name="places"
+                      aria-labelledby="aria-label"
+                      value={places || ""}
+                      onChange={handleInputChange}
+                      className="dropdown_item_select search_input"
+                    >
+                      <option className="text-blacked">
+                        Le nombre de places
                       </option>
-                    ))}
-                  </select>
+                      <option className="text-blacked" value="1">
+                        1
+                      </option>
+                      <option className="text-blacked" value="2">
+                        2
+                      </option>
+                      <option className="text-blacked" value="3">
+                        3
+                      </option>
+                      <option className="text-blacked" value="4">
+                        4
+                      </option>
+                      <option className="text-blacked" value="5">
+                        5
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-group position-relative">
+                    <select
+                      name="station"
+                      aria-labelledby="aria-label"
+                      value={station || ""}
+                      onChange={handleInputChange}
+                      className="dropdown_item_select search_input"
+                    >
+                      <option className="text-blacked">
+                        Sélectionner votre station de départ
+                      </option>
+                      {stations.map((station) => (
+                        <option
+                          className="text-blacked"
+                          key={station.id}
+                          value={JSON.stringify(station)}
+                        >
+                          {station.siege} {station.ville}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                   <button
                     type="submit"
                     id="form_submit_button"

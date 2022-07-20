@@ -38,7 +38,7 @@ const Header = () => {
                     <div class="row">
                         <div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
                             <div class="logo_container">
-                                <div class="logo bg-logo"><a href="/#"><img src="../../public/logo.png" alt="" />LK-Transport</a></div>
+                                <div class="logo bg-logo"><a href="/#">LK-Transport</a></div>
                             </div>
                             <div class="main_nav_container ml-auto">
                                 <ul class="main_nav_list">

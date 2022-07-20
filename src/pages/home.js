@@ -448,7 +448,7 @@ const Home = () => {
                         <div class="col-lg-3 order-lg-1 order-2  ">
                             <div class="copyright_content d-flex flex-row align-items-center">
                                 <div>{/* <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> */}
-                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tous droits réservés 
+                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tous droits réservés
                                     {/* | Made by <i class="fa fa-heart-o" aria-hidden="true"></i> by SamDev.  */}
                                     {/* <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->*/}</div>
                             </div>

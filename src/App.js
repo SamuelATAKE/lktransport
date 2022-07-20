@@ -8,17 +8,21 @@ import Reservation from "./pages/reservation";
 import "react-toastify/dist/ReactToastify.css";
 import PayementConfirm from "./pages/payementConfirm";
 import About from "./pages/about";
+import Ticket from "./pages/ticket";
+import First from "./pages/first";
 
 function App() {
   return (
     <Router>
       <ToastContainer position="top-center" />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<First />} />
         <Route path="/reservation" element={<Reservation />} />
         <Route path="/a-propos-de-nous" element={<About />} />
         <Route path="/qrcode" element={<QrCode />} />
         <Route path="/paiement" element={<PayementConfirm />} />
+        <Route path="/ticket" element={<Ticket />} />
       </Routes>
     </Router>
   );

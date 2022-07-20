@@ -1,0 +1,46 @@
+.containert {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    margin: 40px;
+    grid-template-areas: 
+      "header header header header"
+      "main main . sidebar"
+      "footer footer footer footer";
+  }
+
+  .container1 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+
+.grid-containert {
+    display: grid;
+    column-gap: 50px;
+  }
+
+.text-centert {
+    align-content: center;
+    justify-content: center;
+}
+
+.bgt {
+    background-image:url('../../../public/assets/images/bus3.jpg');
+    height: 75vh;
+}
+
+.bgti {
+    background: rgb(143, 233, 69);
+    height: 110vh;
+}
+
+.tarif-border {
+  border: 2px black solid;
+  padding: 1em;
+}
+
+.dark-text {
+    color: black !important;
+    font-weight: bold;
+}

@@ -34,6 +34,14 @@ const reservationState = {
   price: "",
 };
 
+const commissionState = {
+  depart: "",
+  destination: "",
+  bagage: "",
+  prix: "",
+  
+}
+
 const Search = () => {
   const navigate = useNavigate();
   const [ariaFocusMessage, setAriaFocusMessage] = React.useState("");
@@ -97,9 +105,8 @@ const Search = () => {
   };
 
   const onFocus = (focused, isDisable) => {
-    const msg = `L'option choisie est: ${focused.name}${
-      isDisable ? ", disabled" : ""
-    }`;
+    const msg = `L'option choisie est: ${focused.name}${isDisable ? ", disabled" : ""
+      }`;
     setAriaFocusMessage(msg);
     return msg;
   };
@@ -227,9 +234,9 @@ const Search = () => {
             </form>
           </div>
 
-          {/* <!-- Search Panel --> */}
+          {/* <!-- Search Panel2 --> */}
 
-          {/* <div className="search_panel">
+          <div className="search_panel">
             <form
               action="/#"
               id="search_form_2"
@@ -237,19 +244,65 @@ const Search = () => {
             >
               <div className="search_item">
                 <div>Départ</div>
-                <input
-                  type="text"
-                  className="destination search_input"
-                  required
-                />
+                <select
+                  name="depart"
+                  aria-labelledby="aria-label"
+                  value={depart || ""}
+                  onChange={handleInputChange}
+                  className="dropdown_item_select search_input"
+                >
+                  <option className="text-blacked">
+                    Sélectionner votre lieu de départ
+                  </option>
+                  {venues.map((venue) => (
+                    <option
+                      className="text-blacked"
+                      key={venue.id}
+                      value={venue.value}
+                    >
+                      {venue.name}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="search_item">
                 <div>Destination</div>
-                <input
-                  type="text"
-                  className="destination search_input"
-                  required
-                />
+                <select
+                  name="destination"
+                  aria-labelledby="aria-label"
+                  value={destination || ""}
+                  onChange={handleInputChange}
+                  className="dropdown_item_select search_input"
+                >
+                  <option className="text-blacked">
+                    Sélectionner votre lieu de destination
+                  </option>
+                  {venues.map((venue) => (
+                    <option
+                      className="text-blacked"
+                      key={venue.id}
+                      value={venue.value}
+                    >
+                      {venue.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="search_item">
+                <div>Type de bagages</div>
+                <select
+                  name="places"
+                  id="adults_1"
+                  className="dropdown_item_select search_input"
+                  value={places}
+                  onChange={handleInputChange}
+                >
+                  <option value="00">Enveloppe</option>
+                  <option value="01">Petit Sac</option>
+                  <option value="01">Grand Sac (Sac de charbon par exemple)</option>
+                  <option value="02">Animal</option>
+                  <option value="03">Moto/Vélo</option>
+                </select>
               </div>
               <button className="button search_button">
                 Réservation<span></span>
@@ -257,7 +310,7 @@ const Search = () => {
                 <span></span>
               </button>
             </form>
-          </div> */}
+          </div>
 
           {/* <!-- Search Panel --> */}
 
